@@ -12,8 +12,8 @@ except Exception as e:
     filtered = {}
     
 for k in filtered:
-    filtered[k]["value"].clear()
-    filtered[k]["timestamps"].clear()
+    filtered[k]["value"] = []
+    filtered[k]["timestamps"] = []
 
 for i in gdpr_data["activity"]:
     f = [i["object_id"] for i in filtered.values()]
@@ -127,7 +127,7 @@ for k in filtered:
     # if k == "30":
     #     print("huiii")
         
-l = {key:{k:v for (k,v) in value.items() if k not in ["value", "timestamps"]} for (key, value) in filtered.items()}
+# l = {key:{k:v for (k,v) in value.items() if k not in ["value", "timestamps"]} for (key, value) in filtered.items()}
 json.dump({key:{k:v for (k,v) in value.items() if k not in ["value", "timestamps"]} for (key, value) in filtered.items()}, open("result.json", "w"))        
 
 # for key, val in filtered:
