@@ -8,7 +8,7 @@ gdpr_data = json.load(open("gdpr_data.json"))
 try:
     filtered: dict = json.load(open("result.json"))  
 except Exception as e:
-    print("faled to load result.json:", e)
+    print("failed to load result.json:", e)
     filtered = {}
     
 for k in filtered:
@@ -16,7 +16,9 @@ for k in filtered:
     filtered[k]["timestamps"] = []
 
 for i in gdpr_data["activity"]:
-    f = [i["object_id"] for i in filtered.values()]
+    if i["action_type"] not in [1, 2, 3, 4, 5, 6, 7]:
+        continue
+    f = [i["object_id"] for i in filtered.values() if i["episodes"] is not None]
     if i["object_id"] not in f:
         url = 'https://graphql.anilist.co'
         headers = {
@@ -45,7 +47,10 @@ for i in gdpr_data["activity"]:
         # Extracting the relevant information from the response
         print(data, i["object_id"])
         if "errors" in data.keys():
-            for n in range(int(dict(response.headers)["Retry-After"])+2, 0, -1):
+            print(dict(response.headers))
+            # if (i[])
+            timeout = int(dict(response.headers)["Retry-After"])+2
+            for n in range(timeout, 0, -1):
                 print(f"wait for {n:02}", end='\r')
                 time.sleep(1)
             print("")
