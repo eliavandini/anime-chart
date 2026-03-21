@@ -2,17 +2,12 @@
 
 Uses plotly and the graphql anilist api to generate a graph showing when what episode of what anime was watched.
 
-!!! It may take a few minutes to query all anime for the first time !!!
+**It may take a few minutes to query all anime for the first time.**
 
-Works with anilist.to
-
-requires the [GDPR data download](https://anilist.co/settings/account) in the same directory as main.py
+Requires the [GDPR data download](https://anilist.co/settings/account) from the anilist website
 ```python
-Install dependencies:
-pip install -r requirements.txt
-
-run with:
-python main.py
+$ pip install anilist_chart 
+$ anilist-chart gdpr_data.json
 ```
 
 ## Screenshot

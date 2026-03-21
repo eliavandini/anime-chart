@@ -2,3 +2,4 @@
 venv/
 .vscode
 .Iprof
+!src/anilist_chart/cache.json

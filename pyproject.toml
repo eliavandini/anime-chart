@@ -1,0 +1,37 @@
+[build-system]
+requires = ["hatchling >= 1.26"]
+build-backend = "hatchling.build"
+
+[project]
+name = "anilist_chart"
+version = "0.0.4"
+authors = [
+  { name="Elia Vandini", email="vandini.elia@gmail.com" },
+]
+description = "Plots a timeline of watched episodes using the anilist.co data from the gdpr download file and its public api"
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+license = "MIT"
+license-files = ["LICEN[CS]E*"]
+dependencies = [
+    "requests",
+    "plotly",
+    "argparse",
+    "numpy",
+    "pandas",
+    "tqdm"
+]
+
+[project.urls]
+Homepage = "https://github.com/eliavandini/anilist-chart"
+Issues = "https://github.com/eliavandini/anilist-chart/issues"
+
+[project.scripts]
+anilist-chart = "anilist_chart:main.cli"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/anilist_chart"]
